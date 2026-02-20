@@ -6,13 +6,13 @@ import Footer from '../components/Footer.astro';
 const title = "BPM Diagrams";
 const description = "Business process diagrams and flows.";
 
-// -------------------------------------------------------
-// ADD YOUR DIAGRAMS HERE
-// Each entry needs:
-//   - id:          folder name inside public/diagrams/
-//   - title:       display name in the gallery
-//   - description: short description shown on the card
-// -------------------------------------------------------
+const diagrams = [
+  {
+    id: "Website Test_files",      // must match the folder name in public/diagrams/
+    title: "My Process Test",
+    description: "Test Process",
+  },
+];
 const diagrams = [
   {
     id: "example-process",
