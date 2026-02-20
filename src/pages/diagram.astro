@@ -8,18 +8,13 @@ const description = "Business process diagrams and flows.";
 
 const diagrams = [
   {
-    id: "Website Test_files",      // must match the folder name in public/diagrams/
+    id: "Website Test_files",
     title: "My Process Test",
     description: "Test Process",
   },
-// Add more like this:
-  // {
-  //   id: "onboarding-flow",
-  //   title: "Onboarding Flow",
-  //   description: "Employee onboarding step by step.",
-  // },
 ];
 ---
+
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
@@ -30,24 +25,13 @@ const diagrams = [
         margin: auto;
         padding: 2em 1em;
       }
-
-      h1 {
-        margin-bottom: 0.25em;
-      }
-
-      .subtitle {
-        color: #666;
-        font-size: 0.9em;
-        margin-bottom: 2em;
-      }
-
-      /* ── Gallery grid ── */
+      h1 { margin-bottom: 0.25em; }
+      .subtitle { color: #666; font-size: 0.9em; margin-bottom: 2em; }
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         gap: 1.2em;
       }
-
       .diagram-card {
         border: 2px solid #e0e0e0;
         border-radius: 10px;
@@ -59,36 +43,15 @@ const diagrams = [
         flex-direction: column;
         gap: 0.4em;
       }
-
       .diagram-card:hover {
         border-color: var(--accent);
         box-shadow: 0 4px 16px rgba(0,0,0,0.08);
         transform: translateY(-2px);
       }
-
-      .diagram-card.active {
-        border-color: var(--accent);
-        background: #fff3f0;
-      }
-
-      .card-icon {
-        font-size: 1.6em;
-        line-height: 1;
-      }
-
-      .card-title {
-        font-weight: 700;
-        font-size: 1em;
-        color: #1a1a1a;
-      }
-
-      .card-desc {
-        font-size: 0.82em;
-        color: #777;
-        line-height: 1.4;
-      }
-
-      /* ── Viewer ── */
+      .diagram-card.active { border-color: var(--accent); background: #fff3f0; }
+      .card-icon { font-size: 1.6em; line-height: 1; }
+      .card-title { font-weight: 700; font-size: 1em; color: #1a1a1a; }
+      .card-desc { font-size: 0.82em; color: #777; line-height: 1.4; }
       .viewer {
         display: none;
         margin-top: 2em;
@@ -97,9 +60,7 @@ const diagrams = [
         overflow: hidden;
         box-shadow: 0 4px 24px rgba(0,0,0,0.1);
       }
-
       .viewer.visible { display: block; }
-
       .viewer-header {
         display: flex;
         align-items: center;
@@ -108,18 +69,8 @@ const diagrams = [
         background: var(--accent);
         color: white;
       }
-
-      .viewer-title {
-        font-weight: 700;
-        font-size: 0.95em;
-      }
-
-      .viewer-actions {
-        display: flex;
-        gap: 0.6em;
-        align-items: center;
-      }
-
+      .viewer-title { font-weight: 700; font-size: 0.95em; }
+      .viewer-actions { display: flex; gap: 0.6em; align-items: center; }
       .btn-open, .btn-close {
         background: rgba(255,255,255,0.2);
         border: none;
@@ -133,20 +84,8 @@ const diagrams = [
         text-decoration: none;
         display: inline-block;
       }
-
-      .btn-open:hover, .btn-close:hover {
-        background: rgba(255,255,255,0.35);
-      }
-
-      iframe {
-        width: 100%;
-        height: 70vh;
-        border: none;
-        display: block;
-        background: #fafafa;
-      }
-
-      /* ── Empty state ── */
+      .btn-open:hover, .btn-close:hover { background: rgba(255,255,255,0.35); }
+      iframe { width: 100%; height: 70vh; border: none; display: block; background: #fafafa; }
       .empty {
         text-align: center;
         padding: 3em;
@@ -165,7 +104,7 @@ const diagrams = [
       <p class="subtitle">Click any diagram to view it.</p>
 
       {diagrams.length === 0 ? (
-        <div class="empty">No diagrams yet. Add your first one following the instructions in the file.</div>
+        <div class="empty">No diagrams yet.</div>
       ) : (
         <div class="gallery" id="gallery">
           {diagrams.map(d => (
@@ -206,17 +145,11 @@ const diagrams = [
 
       cards.forEach(card => {
         card.addEventListener('click', () => {
-          // Deactivate all cards
           cards.forEach(c => c.classList.remove('active'));
           card.classList.add('active');
-
-          const url = card.dataset.url;
-          const title = card.dataset.title;
-
-          frame.src = url;
-          viewerTitle.textContent = title;
-          btnOpen.href = url;
-
+          frame.src = card.dataset.url;
+          viewerTitle.textContent = card.dataset.title;
+          btnOpen.href = card.dataset.url;
           viewer.classList.add('visible');
           viewer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
