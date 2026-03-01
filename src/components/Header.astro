@@ -8,10 +8,15 @@ import { SITE_TITLE } from '../consts';
 		<h2><a href="/">{SITE_TITLE}</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
-			<HeaderLink href="/calculator">Calculator</HeaderLink>
-			<HeaderLink href="/diagram">Diagram</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<div class="dropdown">
+				<span class="dropdown-label">Resources</span>
+				<div class="dropdown-menu">
+					<HeaderLink href="/calculator">Calculator</HeaderLink>
+					<HeaderLink href="/diagram">Diagram</HeaderLink>
+				</div>
+			</div>
 		</div>
 		<div class="social-links">
 			<a href="https://m.webtoo.ls/@astro" target="_blank">
@@ -74,6 +79,39 @@ import { SITE_TITLE } from '../consts';
 	nav a.active {
 		text-decoration: none;
 		border-bottom-color: var(--accent);
+	}
+	.dropdown {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+	}
+	.dropdown-label {
+		padding: 1em 0.5em;
+		color: var(--black);
+		border-bottom: 4px solid transparent;
+		cursor: pointer;
+	}
+	.dropdown-menu {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		background: white;
+		box-shadow: 0 4px 12px rgba(var(--black), 10%);
+		flex-direction: column;
+		min-width: 140px;
+		z-index: 10;
+	}
+	.dropdown-menu a {
+		display: block;
+		padding: 0.6em 1em;
+		border-bottom: none;
+	}
+	.dropdown-menu a:hover {
+		background: rgba(var(--black), 5%);
+	}
+	.dropdown:hover .dropdown-menu {
+		display: flex;
 	}
 	.social-links,
 	.social-links a {
